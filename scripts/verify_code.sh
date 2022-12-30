@@ -7,13 +7,13 @@ pushd "${GIT_ROOT}" > /dev/null
 
 
 printf "Formating imports with isort \n" && \
-isort AOC && \
+isort adventofcode && \
 printf "Format code with black \n" && \
-black AOC && \
+black adventofcode && \
 printf "Lint code with mypy \n" && \
-mypy AOC && \
+mypy adventofcode && \
 printf "Lint code with pylint \n" && \
-pylint AOC
+pylint adventofcode
 
 
 SUCCESS=$?

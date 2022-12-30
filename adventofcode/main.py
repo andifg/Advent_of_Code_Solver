@@ -1,9 +1,12 @@
+"""Main module."""
 import logging
 
+from adventofcode.logic.taskmanager import TaskManager
+
 logging.basicConfig(level=logging.INFO)
-from AOC.tasks.tasks import TaskManager
 
 
 def main():
+    """Main function to start programm"""
     taskmanager = TaskManager()
     taskmanager.solve_single_task("01-01")
