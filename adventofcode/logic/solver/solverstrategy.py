@@ -1,6 +1,7 @@
 """Module to manage different solver strategies."""
 from abc import ABC, abstractmethod
 from typing import List
+import logging
 
 
 class SolverStrategy(ABC):
@@ -42,3 +43,20 @@ class CalculateHighestGroupinList(SolverStrategy):
             else:
                 current_number += int(entry)
         return highest_number
+
+class CalculateHighestGroupinListofLists(SolverStrategy):
+    """Calculate the highest group in input list of lists."""
+
+    # pylint: disable=too-few-public-methods
+
+    def solve(self, input_lists: List[List[int]]) -> int:
+        """Returns the highest sum of within a list of lists.
+
+        Args:
+            data (List): list of lists with numbers
+
+        Returns:
+            highest_number: highest sum of a single list
+        """
+        logging.info("Solve by calculating highest group in List of Lists")
+        return max([sum(list) for list in input_lists])

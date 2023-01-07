@@ -1,6 +1,7 @@
 """Class to manage a single Task of Advent of Code"""
 
 import logging
+import json
 
 from adventofcode.logic.inputloader import InputLoader
 from adventofcode.logic.solver.solver import Solver
@@ -12,17 +13,19 @@ class Task:
 
     # pylint: disable=too-few-public-methods
 
-    def __init__(self, inputfile, transformer, solver):
+    def __init__(self, inputfile, transformers, solver):
         self.input = InputLoader(inputfile)
-        self.transformer = InputTransformer(transformer())
+        self.transformer = InputTransformer(
+            [transformer() for transformer in transformers]
+        )
         self.solver = Solver(solver())
 
     def start(self):
         """Main function for loading, transforming and solving tasks."""
         raw_input = self.input.load_textfile_as_list()
         logging.info("Loaded input")
-        logging.debug("Loaded input: %d", raw_input)
-        transformed_input = self.transformer.do_transformation(raw_input)
+        logging.debug("Loaded input: %d", json.dumps(raw_input))
+        transformed_input = self.transformer.do_transformations(raw_input)
         logging.info("Input transformed")
         logging.debug("Transformed input to: %d", transformed_input)
         result = self.solver.solve(transformed_input)

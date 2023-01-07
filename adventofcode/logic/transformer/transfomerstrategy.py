@@ -16,7 +16,7 @@ class TransformerStrategy(ABC):
     # pylint: disable=too-few-public-methods
 
     @abstractmethod
-    def do_transformation(self, data: List):
+    def do_transformation(self, data: List) -> List:
         """Abstract transfomration method to be overwritten."""
 
 
@@ -25,7 +25,7 @@ class RemoveNewLines(TransformerStrategy):
 
     # pylint: disable=too-few-public-methods
 
-    def do_transformation(self, data: List):
+    def do_transformation(self, data: List) -> List:
         """Execute replacement
 
         Args:
@@ -37,3 +37,21 @@ class RemoveNewLines(TransformerStrategy):
         transformed_input = [item.replace("\n", "") for item in data]
         logging.debug(transformed_input)
         return transformed_input
+
+
+class RefacterListtoListofListsbySeparator(TransformerStrategy):
+    """TransformerStrategy (_type_): _description_"""
+
+    def __init__(self, seperator: str = ""):
+        self.seperator = seperator
+
+    def do_transformation(self, data: List) -> List:
+        new_list = []
+        current_list = []
+        for item in data:
+            if item == "":
+                new_list.append(current_list)
+                current_list = []
+            else:
+                current_list.append(int(item))
+        return new_list

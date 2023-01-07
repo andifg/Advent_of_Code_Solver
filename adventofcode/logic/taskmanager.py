@@ -3,15 +3,15 @@ from __future__ import annotations
 
 from typing import List
 
-from adventofcode.logic.solver.solverstrategy import CalculateHighestGroupinList
+from adventofcode.logic.solver.solverstrategy import CalculateHighestGroupinList, CalculateHighestGroupinListofLists
 from adventofcode.logic.task import Task
-from adventofcode.logic.transformer.transfomerstrategy import RemoveNewLines
+from adventofcode.logic.transformer.transfomerstrategy import RemoveNewLines, RefacterListtoListofListsbySeparator
 
 REGISTERED_TASKS = {
     "01-01": {
         "input": "01-1.txt",
-        "transformer": RemoveNewLines,
-        "solver": CalculateHighestGroupinList,
+        "transformers": [RemoveNewLines, RefacterListtoListofListsbySeparator],
+        "solver": CalculateHighestGroupinListofLists,
     }
 }
 
@@ -36,7 +36,7 @@ class TaskManager:
         """
         task = Task(
             REGISTERED_TASKS.get(taskname, {}).get("input"),
-            REGISTERED_TASKS.get(taskname, {}).get("transformer"),
+            REGISTERED_TASKS.get(taskname, {}).get("transformers"),
             REGISTERED_TASKS.get(taskname, {}).get("solver"),
         )
         task.start()
