@@ -3,9 +3,12 @@ from __future__ import annotations
 
 from typing import List
 
-from adventofcode.logic.solver.solverstrategy import CalculateHighestGroupinList, CalculateHighestGroupinListofLists
+from adventofcode.logic.solver.solverstrategy import CalculateHighestGroupinListofLists
 from adventofcode.logic.task import Task
-from adventofcode.logic.transformer.transfomerstrategy import RemoveNewLines, RefacterListtoListofListsbySeparator
+from adventofcode.logic.transformer.transfomerstrategy import (
+    RefacterListtoListofListsbySeparator,
+    RemoveNewLines,
+)
 
 REGISTERED_TASKS = {
     "01-01": {

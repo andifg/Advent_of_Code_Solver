@@ -1,7 +1,7 @@
 """Class to manage a single Task of Advent of Code"""
 
-import logging
 import json
+import logging
 
 from adventofcode.logic.inputloader import InputLoader
 from adventofcode.logic.solver.solver import Solver

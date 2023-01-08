@@ -1,7 +1,7 @@
 """Module to manage different solver strategies."""
+import logging
 from abc import ABC, abstractmethod
 from typing import List
-import logging
 
 
 class SolverStrategy(ABC):
@@ -35,14 +35,17 @@ class CalculateHighestGroupinList(SolverStrategy):
         """
         highest_number = 0
         current_number = 0
+
         for entry in input_list:
-            if entry == "":
+            if entry != "":
+                current_number += int(entry)
+            if entry in ("", input_list[len(input_list) - 1]):
                 if current_number > highest_number:
                     highest_number = current_number
                 current_number = 0
-            else:
-                current_number += int(entry)
+
         return highest_number
+
 
 class CalculateHighestGroupinListofLists(SolverStrategy):
     """Calculate the highest group in input list of lists."""
@@ -59,4 +62,10 @@ class CalculateHighestGroupinListofLists(SolverStrategy):
             highest_number: highest sum of a single list
         """
         logging.info("Solve by calculating highest group in List of Lists")
-        return max([sum(list) for list in input_lists])
+
+        try:
+            highest_number = max(sum(list) for list in input_lists)
+        except ValueError:
+            highest_number = 0
+
+        return highest_number

@@ -27,9 +27,9 @@ class InputTransformer:
         """
 
         if self.strategy:
-            logging.debug(f"Executing transformer {self.strategy[0]}")
+            logging.debug("Executing transformer %d", self.strategy[0])
             transformed_result = self.strategy[0].do_transformation(raw_input)
             self.strategy.pop(0)
             return self.do_transformations(transformed_result)
-        else:
-            return raw_input
+
+        return raw_input

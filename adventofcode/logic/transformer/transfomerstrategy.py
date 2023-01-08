@@ -42,12 +42,14 @@ class RemoveNewLines(TransformerStrategy):
 class RefacterListtoListofListsbySeparator(TransformerStrategy):
     """TransformerStrategy (_type_): _description_"""
 
+    # pylint: disable=too-few-public-methods
+
     def __init__(self, seperator: str = ""):
         self.seperator = seperator
 
-    def do_transformation(self, data: List) -> List:
-        new_list = []
-        current_list = []
+    def do_transformation(self, data: List) -> List[List[int]]:
+        new_list: List[List[int]] = []
+        current_list: List[int] = []
         for item in data:
             if item == "":
                 new_list.append(current_list)
