@@ -14,7 +14,7 @@ REGISTERED_TASKS = {
     "01-01": {
         "input": "01-1.txt",
         "transformers": [RemoveNewLines, RefacterListtoListofListsbySeparator],
-        "solver": CalculateHighestGroupinListofLists,
+        "solver": [CalculateHighestGroupinListofLists],
     }
 }
 
@@ -31,15 +31,15 @@ class TaskManager:
 
     taskList: List = []
 
-    def solve_single_task(self, taskname: str):
+    def solve_single_task(self, taskname: str) -> None:
         """_summary_
 
         Args:
             taskname (str): Name of the task to be solved
         """
         task = Task(
-            REGISTERED_TASKS.get(taskname, {}).get("input"),
-            REGISTERED_TASKS.get(taskname, {}).get("transformers"),
-            REGISTERED_TASKS.get(taskname, {}).get("solver"),
+            str(REGISTERED_TASKS.get(taskname, {}).get("input", "")),
+            list(REGISTERED_TASKS.get(taskname, {}).get("transformers", [])),
+            list(REGISTERED_TASKS.get(taskname, {}).get("solver", [])),
         )
         task.start()

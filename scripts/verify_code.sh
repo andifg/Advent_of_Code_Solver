@@ -11,7 +11,7 @@ isort adventofcode && \
 printf "Format code with black \n" && \
 black adventofcode && \
 printf "Lint code with mypy \n" && \
-mypy adventofcode && \
+mypy adventofcode --disallow-untyped-defs && \
 printf "Lint code with pylint \n" && \
 pylint adventofcode
 
