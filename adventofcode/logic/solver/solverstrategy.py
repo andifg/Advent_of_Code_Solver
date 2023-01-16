@@ -80,11 +80,7 @@ class CalculateHighestGroupinListofLists(SolverStrategy):
 
 
 class CalculateSumofTopThreeGroupsinListofLists(SolverStrategy):
-    """_summary_
-
-    Args:
-        SolverStrategy (_type_): _description_
-    """
+    """Return sum of the groups having the largest three sums."""
 
     # pylint: disable=too-few-public-methods
 
@@ -101,3 +97,25 @@ class CalculateSumofTopThreeGroupsinListofLists(SolverStrategy):
         sum_of_top_three = sum(sum(entry) for entry in top_three)
 
         return sum_of_top_three
+
+class CalculateRockPaperScissorsStrategyScore(SolverStrategy):
+    """Calculate score for RockPaperScissors strategy
+
+    This solver calculates the score for a game strategy. The game strategy
+    consists of pairs of choices. Each choice stands for either Rock, Paper or
+    Scissor. The first input is always from the enemy the second from the player.
+    The score is based on two parts:
+    - The player always gets points for his choice (Rock = 1, Paper = 2,
+      Scissors = 3)
+    - The player gets points for the outcome of the game (Loss = 0, Draw = 3,
+      Win = 6)
+
+    """
+
+    # pylint: disable=too-few-public-methods
+
+    def solve(self, settings: SolverSettings) -> int:
+
+        breakpoint()
+
+        return None

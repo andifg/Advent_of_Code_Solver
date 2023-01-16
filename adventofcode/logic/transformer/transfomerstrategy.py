@@ -20,8 +20,10 @@ class TransformerStrategy(ABC):
         """Abstract transfomration method to be overwritten."""
 
 
-class RemoveNewLines(TransformerStrategy):
-    """Remove new line characters '\n' from list entries"""
+class RemoveNewLinesInListEntries(TransformerStrategy):
+    """Remove new line characters '\n' from list entries.
+
+    Important: the seperator really needs to be the whole entry of the list."""
 
     # pylint: disable=too-few-public-methods
 
@@ -40,7 +42,9 @@ class RemoveNewLines(TransformerStrategy):
 
 
 class RefacterListtoListofListsbySeparator(TransformerStrategy):
-    """TransformerStrategy (_type_): _description_"""
+    """The function concats list entries to new lists based on seperator.
+
+    Important: the seperator really needs to be the whole entry of the list."""
 
     # pylint: disable=too-few-public-methods
 
@@ -50,10 +54,35 @@ class RefacterListtoListofListsbySeparator(TransformerStrategy):
     def do_transformation(self, data: List) -> List[List[int]]:
         new_list: List[List[int]] = []
         current_list: List[int] = []
-        for item in data:
+        for i,item in enumerate(data):
             if item == "":
                 new_list.append(current_list)
                 current_list = []
+            elif i == len(data)-1:
+                current_list.append(int(item))
+                new_list.append(current_list)
             else:
                 current_list.append(int(item))
+
         return new_list
+
+class DivideListToListofLists(TransformerStrategy):
+    """Divide list entries by seperator."""
+
+    # pylint: disable=too-few-public-methods
+
+    def __init__(self, seperator: str = " "):
+        self.seperator = seperator
+
+    def do_transformation(self, data: List) -> List:
+        """Execute replacement
+
+        Args:
+            input (List): input list
+
+        Returns:
+            transformed_input: list without new line characters
+        """
+        transformed_input = [item.split(" ") for item in data]
+        logging.debug(transformed_input)
+        return transformed_input

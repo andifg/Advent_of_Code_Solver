@@ -9,4 +9,4 @@ logging.basicConfig(level=logging.INFO)
 def main() -> None:
     """Main function to start programm"""
     taskmanager = TaskManager()
-    taskmanager.solve_single_task("01-01")
+    taskmanager.solve_all_task()

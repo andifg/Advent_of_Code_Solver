@@ -1,21 +1,32 @@
 """ Module to manager multiple tasks."""
 from __future__ import annotations
 
+import logging
 from typing import List
 
-from adventofcode.logic.solver.solverstrategy import CalculateHighestGroupinListofLists
+from adventofcode.logic.solver.solverstrategy import (
+    CalculateHighestGroupinListofLists,
+    CalculateSumofTopThreeGroupsinListofLists,
+    CalculateRockPaperScissorsStrategyScore
+)
 from adventofcode.logic.task import Task
 from adventofcode.logic.transformer.transfomerstrategy import (
     RefacterListtoListofListsbySeparator,
-    RemoveNewLines,
+    RemoveNewLinesInListEntries,
+    DivideListToListofLists
 )
 
 REGISTERED_TASKS = {
     "01-01": {
         "input": "01-1.txt",
-        "transformers": [RemoveNewLines, RefacterListtoListofListsbySeparator],
+        "transformers": [RemoveNewLinesInListEntries, RefacterListtoListofListsbySeparator],
         "solver": [CalculateHighestGroupinListofLists],
-    }
+    },
+    "02-01": {
+        "input": "02-1.txt",
+        "transformers": [RemoveNewLinesInListEntries, DivideListToListofLists],
+        "solver": [CalculateRockPaperScissorsStrategyScore],
+    },
 }
 
 
@@ -43,3 +54,10 @@ class TaskManager:
             list(REGISTERED_TASKS.get(taskname, {}).get("solver", [])),
         )
         task.start()
+
+    def solve_all_task(self) -> None:
+        """Solve all tasks registered."""
+        tasks = REGISTERED_TASKS.keys()
+        for task in tasks:
+            logging.info("######## SOLVING %s ##########", task)
+            self.solve_single_task(task)
