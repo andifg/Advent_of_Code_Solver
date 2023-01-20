@@ -1,7 +1,7 @@
 """Main module."""
 import logging
 
-from adventofcode.logic.taskmanager import TaskManager
+from adventofcode.logic.task.taskmanager import TaskManager
 
 logging.basicConfig(level=logging.INFO)
 

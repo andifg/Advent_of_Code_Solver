@@ -9,6 +9,7 @@ from adventofcode.logic.solver.solver import Solver
 from adventofcode.logic.transformer.inputtransformer import InputTransformer
 
 
+
 class Task:
     """Class to manage a single Task of Advent of Code"""
 

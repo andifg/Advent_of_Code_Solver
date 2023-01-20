@@ -5,11 +5,12 @@ import logging
 from typing import List
 
 from adventofcode.logic.solver.solverstrategy import (
+    CalculateHighestGroupinList,
     CalculateHighestGroupinListofLists,
     CalculateSumofTopThreeGroupsinListofLists,
     CalculateRockPaperScissorsStrategyScore
 )
-from adventofcode.logic.task import Task
+from adventofcode.logic.task.task import Task
 from adventofcode.logic.transformer.transfomerstrategy import (
     RefacterListtoListofListsbySeparator,
     RemoveNewLinesInListEntries,
@@ -17,6 +18,11 @@ from adventofcode.logic.transformer.transfomerstrategy import (
 )
 
 REGISTERED_TASKS = {
+    "01-01": {
+        "input": "01-1.txt",
+        "transformers": [RemoveNewLinesInListEntries, RefacterListtoListofListsbySeparator],
+        "solver": [CalculateHighestGroupinList],
+    },
     "01-01": {
         "input": "01-1.txt",
         "transformers": [RemoveNewLinesInListEntries, RefacterListtoListofListsbySeparator],
